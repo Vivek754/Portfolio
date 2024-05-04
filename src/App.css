@@ -1,3 +1,54 @@
-.custom-font {
-  font-family: Red Rose;
+.Rooster {
+  font-family: Rooster;
+}
+
+.Misto {
+  font-family: Misto;
+}
+
+.Sirukota {
+  font-family: Sirukota;
+}
+
+@font-face {
+  font-family: "Misto";
+  src: url("src/assets/fonts/Misto.ttf");
+  format: ("truetype");
+}
+
+@font-face {
+  font-family: "Sirukota";
+  src: url("src/assets/fonts/Sirukota.ttf");
+  format: ("truetype");
+}
+
+@font-face {
+  font-family: "Rooster";
+  src: url("src/assets/fonts/Rooster.ttf");
+  format: ("truetype");
+}
+
+.shape-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shape {
+  width: 400px;
+  height: 400px;
+  background: url("https://avatars.githubusercontent.com/u/68178450?v=4")
+      no-repeat center/cover,
+    linear-gradient(64deg, #f34868 23%, #f24768 23%, #9e00ec 80%);
+  animation: blob 8s ease-in-out infinite;
+}
+
+@keyframes blob {
+  0%,
+  100% {
+    border-radius: 24% 76% 35% 65% / 27% 36% 64% 73%;
+  }
+  25% {
+    border-radius: 76% 24% 33% 67% / 68% 55% 45% 32%;
+  }
 }

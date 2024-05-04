@@ -1,5 +1,9 @@
 import React from "react";
-import { FaSquareXTwitter, FaSquareSnapchat } from "react-icons/fa6";
+import {
+  FaSquareXTwitter,
+  FaSquareSnapchat,
+  FaSquareGithub,
+} from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -11,7 +15,7 @@ export default function Footer() {
         <img src="./src/assets/svg/shape4.svg" alt="" className="w-64" />
         <img src="./src/assets/svg/shape2.svg" alt="" className="w-64" />
       </main> */}
-      <footer className="flex gap-10 bg-gray-100 px-10 py-5 z-10 shadow-inner">
+      <footer className="flex gap-10 bg-gray-100 px-10 py-5 z-10 shadow-inner dark:bg-[#1d1d1f] dark:text-[#f5f5f7]">
         <section className="basis-1/3">
           <p className="text-3xl text-center">
             <code>{"<Contact />"}</code>
@@ -35,21 +39,27 @@ export default function Footer() {
           </p>
           <main className="flex justify-center">
             <section className="flex flex-col gap-2 mt-8 text-xl">
-              <div className="flex items-center gap-5 cursor-pointer">
-                <img
-                  src="./src/assets/social/insta2.png"
-                  alt=""
-                  className="w-10"
-                />
-                <code>Instagram</code>
-              </div>
-              <div className="flex items-center gap-5 cursor-pointer">
-                <FaSquareXTwitter className="text-[42px]" />
-                <code>Twitter</code>
-              </div>
-              <div className="flex items-center gap-5 cursor-pointer">
-                <FaSquareSnapchat className="text-[42px] text-yellow-400" />
-                <code>Snapchat</code>
+              <div className="grid  grid-cols-2 gap-5 cursor-pointer">
+                <div className="flex items-center gap-5 cursor-pointer">
+                  <FaSquareGithub className="text-[42px]" />
+                  <code>GitHub</code>
+                </div>
+                <div className="flex items-center gap-5">
+                  <img
+                    src="./src/assets/social/insta2.png"
+                    alt=""
+                    className="w-10"
+                  />
+                  <code>Instagram</code>
+                </div>
+                <div className="flex items-center gap-5 cursor-pointer">
+                  <FaSquareXTwitter className="text-[42px]" />
+                  <code>Twitter</code>
+                </div>
+                <div className="flex items-center gap-5 cursor-pointer">
+                  <FaSquareSnapchat className="text-[42px] text-yellow-400" />
+                  <code>Snapchat</code>
+                </div>
               </div>
             </section>
           </main>

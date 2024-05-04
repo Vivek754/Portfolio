@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { ThemeSelector } from "../components/ThemeSelector.jsx";
 import { MailIcon } from "./MailIcon";
 import { LockIcon } from "./LockIcon";
 import "../App.css";
@@ -25,17 +26,18 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-  Avatar,
   User,
 } from "@nextui-org/react";
 import { useAuth } from "../utils/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const { viewProfilePicture, allFiles } = useAuth();
+  const [filePreviewUrl, setFilePreviewUrl] = useState(null);
+
   // Login Code
 
   const { user, logoutUser, loginUser } = useAuth();
-  const navigate = useNavigate();
   localStorage.setItem("user", JSON.stringify(user));
 
   const userEmail = useRef(null);
@@ -51,11 +53,19 @@ const Header = () => {
   };
 
   // Login Code End
+  useEffect(() => {
+    const fetchProfilePicture = async () => {
+      const filePreview = await viewProfilePicture(
+        localStorage.getItem("profilePicture")
+      );
+      setFilePreviewUrl(filePreview);
+    };
+    fetchProfilePicture();
+  }, []);
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const menuItems = ["Home", "About", "Contact", "Projects"];
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
   return (
     <>
       <Navbar
@@ -78,14 +88,17 @@ const Header = () => {
             </p>
           </NavbarBrand>
         </NavbarContent>
-        <NavbarContent className="hidden sm:flex gap-4 " justify="center">
+        <NavbarContent className="hidden sm:flex gap-4 " justify="start">
           <NavbarBrand>
-            <p className="font-bold text-xl text-inherit custom-font">
+            <p className="font-bold text-xl text-inherit font-['Red_Rose']">
               VIVEK NIGAM
             </p>
           </NavbarBrand>
         </NavbarContent>
-        <NavbarContent className="hidden sm:flex gap-14 " justify="center">
+        <NavbarContent
+          className="hidden sm:flex gap-14 px-10 "
+          justify="center"
+        >
           <NavbarItem isActive>
             <NavLink to="/">
               <Link aria-current="page">
@@ -125,15 +138,17 @@ const Header = () => {
                       as="button"
                       avatarProps={{
                         isBordered: true,
-                        src: "https://avatars.githubusercontent.com/u/68178450?v=4",
+                        src: filePreviewUrl,
                       }}
                       className="transition-transform"
-                      description="Admin"
-                      name="Vivek Nigam"
+                      description={user.labels}
+                      name={user.name}
                     />
                   </DropdownTrigger>
                   <DropdownMenu aria-label="User Actions" variant="flat">
-                    <DropdownItem key="profile">Profile</DropdownItem>
+                    <DropdownItem key="profile" href="/profile">
+                      Profile
+                    </DropdownItem>
                     <DropdownItem key="dashboard" href="/dashboard">
                       Dashboard
                     </DropdownItem>
@@ -147,11 +162,21 @@ const Header = () => {
                   </DropdownMenu>
                 </Dropdown>
               ) : (
-                <Button color="success" variant="flat" onPress={onOpen}>
+                <Button
+                  color="success"
+                  variant="flat"
+                  className="border-2 border-green-400"
+                  onPress={onOpen}
+                >
                   <code>{"<Login/>"}</code>
                 </Button>
               )}
             </Link>
+          </NavbarItem>
+        </NavbarContent>
+        <NavbarContent justify={"end"}>
+          <NavbarItem>
+            <ThemeSelector />
           </NavbarItem>
         </NavbarContent>
         <NavbarMenu>

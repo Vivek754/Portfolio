@@ -11,11 +11,12 @@ import {
 import { IoLogoJavascript } from "react-icons/io5";
 import { SiTailwindcss } from "react-icons/si";
 import { Image, Card, CardFooter, Button } from "@nextui-org/react";
+import { Navigate, Link } from "react-router-dom";
 
 function Home() {
   return (
     <>
-      <main className="flex flex-wrap justify-center items-center gap-36 mt-20">
+      <main className="flex flex-wrap justify-center gap-36 mt-20">
         <section>
           <Image
             isBlurred
@@ -26,20 +27,29 @@ function Home() {
           />
         </section>
         <section>
-          <code className="text-8xl font-[90]">{"<coder>"}</code>
-          <p className="w-96 text-justify mt-7 tracking-wide leading-relaxed">
-            Hello there! I'm a Frontend Developer, or as I like to call myself,
-            a "Web Picasso". I paint the canvas of the web with my coding brush,
-            using vibrant strokes of React, Tailwind, and Bootstrap. My passion
-            lies in crafting interfaces that are so intuitive, even my grandma
-            can use them! I believe in transforming caffeine into code, and
-            ideas into digital realities. And remember, I don't just write code,
-            I compose symphonies in JavaScript, one line at a time! I'm just a
-            semicolon away!
+          <p className="text-8xl font-[90] mb-5">
+            <code>{"<coder>"}</code>
           </p>
+          <p className="w-96 text-justify tracking-normal leading-relaxed font-['consolas'] text-sm">
+            Hello there! I'm a Frontend Developer 💻, or as I like to call
+            myself, a "Web Picasso". I paint the canvas of the web with my
+            coding brush 🎨, using vibrant strokes of React, Tailwind, and
+            Bootstrap. My passion lies in crafting interfaces that are so
+            intuitive, even my grandma can use them! I believe in transforming
+            caffeine into code, and ideas into digital realities. And remember,
+            I don't just write code, I compose symphonies in JavaScript, one
+            line at a time! I'm just a semicolon away!
+          </p>
+          <Button
+            variant="flat"
+            color="danger"
+            className="border-2 border-red-400 Rooster text-4xl w-full my-2 py-6 float-right"
+          >
+            Hire Me
+          </Button>
         </section>
       </main>
-      <main className="bg-gray-100 py-7 my-10">
+      <main className="bg-gray-100 py-7 my-10 dark:bg-[#161617]">
         <p className="text-center text-4xl animate-typing">
           <code>
             {"<"}
@@ -160,9 +170,19 @@ function Home() {
               </Button>
             </CardFooter>
           </Card>
+          <Link className="col-span-5 place-self-center" to={"/projects"}>
+            <Button
+              variant="flat"
+              color="primary"
+              className="border-2 border-blue-400"
+            >
+              <code>{"<Show More/>"}</code>
+            </Button>
+          </Link>
         </section>
       </main>
     </>
   );
 }
+
 export default Home;
